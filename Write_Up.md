@@ -1,4 +1,4 @@
-### ELF x86 - 0 protection
+# ELF x86 - 0 protection
 
 Download the file and use the tool `Exeinfo PE` to check the file information. I realize this file is not file exe of Windows.  It's file GCC
 
@@ -14,7 +14,7 @@ I will run it on the Kali to see how it works.
 
  Show flag is `123456789`
 
- ### ELF x86 - Basique
+ # ELF x86 - Basique
 Download the file and use the tool 'Exeinfo PE' to check the file information file. And this file is not file exe for Windows. This is file GCC
 
 ![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/43fd24f3-6b7f-46ac-adde-0100e756d6f9)
@@ -29,7 +29,7 @@ Use IDA32 to static anlysis program this. Enter user `john` and password `the ri
 
 Flag: `987654321`
 
-### PE x86 - 0 protection
+# PE x86 - 0 protection
 
 Download the file and use the tool `Exeinfo PE` to check the information file. And file it is exe Windown and this is file 32bit.
 
@@ -45,7 +45,7 @@ I think this program check the string when i give. If pass correct  program will
 
 Flag: `SPaCIoS`
 
-### ELF C++ - 0 protection
+# ELF C++ - 0 protection
 
 Download the file and use the tool 'Exeinfo PE' to check the information file. And this file it is file GCC and run in Linux
 
@@ -69,6 +69,42 @@ and i see location `0x8048a9d` has funtion cmp input with password. Set break po
 ![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/e097d7bd-a7c3-4b2b-b0fb-424b8e65daa7)
 
 Flag: `Here_you_have_to_understand_a_little_C++_stuffs`
+
+# ELF x64 - Golang basique
+
+Download the file and use the tool 'Exeinfo PE' to check the information file. And this file it is file GCC and run in Linux
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/8681fe76-9949-4afd-9309-4ee3cc7a0f04)
+
+Run file and i sê thí file request password
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/b6e63d1b-8efd-4e00-bd04-28971b40b86a)
+
+User IDA64 to static analysis and i see input will XOR with key is 'rootme'
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/e5c37748-d5c4-44db-9c90-de1593421623)
+
+And i write script python to decode.
+
+```
+array = [0x3B, 0x02, 0x23, 0x1B, 0x1B, 0x0C, 0x1C, 0x08, 0x28, 0x1B, 0x21, 0x04, 0x1C, 0x0B]
+key = 'rootme'
+def decrypt(array, key):
+    decrypted = []
+    key_length = len(key)
+    for i in range(len(array)):
+        decrypted.append(array[i] ^ ord(key[i % key_length]))
+    return decrypted
+
+decrypted_array = decrypt(array, key)
+print(decrypted_array)
+
+```
+And t find the flag is `ImLovingGoLand`
+
+
+
+
 
 
 
