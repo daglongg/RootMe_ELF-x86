@@ -102,6 +102,78 @@ print(decrypted_array)
 ```
 And t find the flag is `ImLovingGoLand`
 
+# ELF MIPS - Basic Crackme
+
+Download the file and use the tool `Exeinfo PE` to check the information file. 
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/ee6c0e04-19c2-469b-994a-ffa1fc2b520f)
+
+Use `Ghidra` to static analysis file.
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/d171872c-59c9-4110-bbf1-fd994d5ff492)
+
+And i find the flag is `cantrunmiiiiiiiiips`
+
+# ELF x86 - Ptrace
+
+Download file and use tool `Exeinfo PE` to check information file.
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/cf238ba0-721c-4bcc-8cad-1dc673b32091)
+
+User `Ghidra` to static analysis. 
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/68797eb0-c91d-45b9-abd5-d20ce2b91fd0)
+
+And flag is `easy`
+
+# ELF ARM - Basic Crackme
+
+Download file and use tool `Exeinfo PE` to check information file.
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/6029c4b5-0799-4aa2-ac25-5224e09631a6)
+
+Use `Ghidra` and change name something variable and i have pseudocode
+
+![image](https://github.com/daglongg/RootMe_ELF-x86/assets/138242812/2eaace3d-e470-4136-98e5-535dcdf73e14)
+
+I see password has 6 character. And in the line 41 i see `sum = number1 + (_input[3] ^ 0x72) + (uint)_input[6];`. In here i find input 3 = 0x72 beacause sum = 0, number1 = 0; input[6] = 0.
+
+I write script bu Python 
+```
+input = [0, 0, 0, 0, 0, 0, 0]
+
+# input[3] = 0x72
+input[3] = 0x72
+
+# input[3] + 1 = input[0]
+input[0] = input[3] + 1
+
+# input[0] = input[5]
+input[5] = input[0]
+
+# input[0] + 1 = input[1]
+input[1] = input[0] + 1
+
+# input[2] + 4 = input[5]
+input[2] = input[5] - 4
+
+# input[4] + 2 = input[2]
+input[4] = input[2] - 2
+
+print(input)
+
+```
+And i has flag is `storms`
+
+
+
+
+
+
+
+
+
+
 
 
 
